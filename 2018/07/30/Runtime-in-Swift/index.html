@@ -5,15 +5,19 @@
   
 
   
-  <title>Corgi&#39;s Blog</title>
+  <title>Runtime in Swift | Corgi&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Corgi&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="为了验证Swift中使用runtime机制, 我们先创建一个类 1234class SwiftRuntimeClass &amp;#123;    var propertyA: Bool = true    var propertyB: Int = 0&amp;#125; 然后试着去获取SwiftRuntimeClass的参数列表 12345678910var count: UInt32 = 0let `clas">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Runtime in Swift">
+<meta property="og:url" content="http://yoursite.com/2018/07/30/Runtime-in-Swift/index.html">
 <meta property="og:site_name" content="Corgi&#39;s Blog">
+<meta property="og:description" content="为了验证Swift中使用runtime机制, 我们先创建一个类 1234class SwiftRuntimeClass &amp;#123;    var propertyA: Bool = true    var propertyB: Int = 0&amp;#125; 然后试着去获取SwiftRuntimeClass的参数列表 12345678910var count: UInt32 = 0let `clas">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-07-30T05:19:52.111Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Corgi&#39;s Blog">
+<meta name="twitter:title" content="Runtime in Swift">
+<meta name="twitter:description" content="为了验证Swift中使用runtime机制, 我们先创建一个类 1234class SwiftRuntimeClass &amp;#123;    var propertyA: Bool = true    var propertyB: Int = 0&amp;#125; 然后试着去获取SwiftRuntimeClass的参数列表 12345678910var count: UInt32 = 0let `clas">
   
     <link rel="alternate" href="/atom.xml" title="Corgi&#39;s Blog" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Runtime-in-Swift" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Runtime-in-Swift" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/30/Runtime-in-Swift/" class="article-date">
   <time datetime="2018-07-30T04:54:46.788Z" itemprop="datePublished">2018-07-30</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/30/Runtime-in-Swift/">Runtime in Swift</a>
+    <h1 class="article-title" itemprop="name">
+      Runtime in Swift
     </h1>
   
 
@@ -111,187 +113,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-About-Swift" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/18/About-Swift/" class="article-date">
-  <time datetime="2018-04-18T08:08:22.763Z" itemprop="datePublished">2018-04-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/18/About-Swift/">Welcome to Swift</a>
-    </h1>
+    <a href="/2018/04/18/About-Swift/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Welcome to Swift</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="About-Swift"><a href="#About-Swift" class="headerlink" title="About Swift"></a>About Swift</h2><p><strong>Swift</strong> 支持移动端, PC, 服务器, 或任何其他能够执行 <strong>Swift</strong> 的平台. 它安全, 快速, 吸收了 <strong>Apple</strong> 和开源社区的开发智慧. 对编译器的性能进行了优化, 同时语言对于开发更友好.</p>
-<p><strong>Swift</strong> 易于上手. 它是一门工业级编程语言, 与脚本语言类似的易于表达和令人享受. 使用支持 <strong>Swift</strong> 的 <em>PlayGround</em> , 可以在不导入任何头文件或者运行app的情况下测试代码, 并且立即看到结果.</p>
-<p><strong>Swift</strong> 吸取现代编程语言的经验, 通过定义大量的的类, 来避免普遍的编程错误.</p>
-<ul>
-<li><em>变量</em> 在使用之前必须被实例化</li>
-<li>对 <em>数组</em> 索引进行越界检查</li>
-<li>对 <em>整型</em> 进行溢出检查</li>
-<li>使用 <em>可选类型</em> 来明确保证 nil 的持有情况</li>
-<li>自动内存管理</li>
-<li>错误处理保证了未知的错误变得可控</li>
-</ul>
-<p>为了最大化的发挥硬件性能, <strong>Swift</strong> 的代码进行了优化. 它的语法和标准库基于”所见即所得”的原则被定义. 它的安全和快速使 <strong>Swift</strong> 成为编写 “Hello World!” 或者是一个完整应用的最佳选择.</p>
-<p><strong>Swift</strong> 将强大的类型推断和模式匹配融合到现代的, 轻量级的语法中, 让复杂的想法以简洁的方式表现出来. 得益于此, 代码变得易于读, 写和维护.</p>
-<h2 id="版本兼容性"><a href="#版本兼容性" class="headerlink" title="版本兼容性"></a>版本兼容性</h2><p>本文基于 <strong>Swift 4.1</strong>, 默认包含于 <em>Xcode 9.2</em>. <em>Xcode 9.2</em> 可以编写 <strong>Swift4</strong> 或者 <strong>Swift3</strong></p>
-<blockquote>
-<p>注释<br>当 Swift 编译器在编译 Swift 3 的代码, 它会将语言版本认定为 3.2, 你可以使用条件语句 #if swift(&gt;=3.2) 来能让多版本语言共存.</p>
-</blockquote>
-<p>当你使用 <em>Xcode 9.2</em> 来编译 <strong>Swift 3</strong> 的代码, 大部分 <strong>Swift 4</strong> 特性都是可以使用的, 只有如下特性只支持 <strong>Swift 4</strong>:</p>
-<ul>
-<li><em>Substring</em> 操作返回值是 <code>Substring</code> 类型, 而不是 ‘String’类型.</li>
-<li><code>@objc</code> 属性在更少的地方被自动添加.</li>
-<li>在同一文件中对类型添加的 <code>Extension</code> 可以访问原类型的私有成员变量.</li>
-</ul>
-<p>一个 <strong>Swift 4</strong> Target 可以依赖于 <strong>Swift 3</strong>,反之同理. 也就意味着, 如果你以库的形式创建你的工程, 你可以一次性将代码从 <strong>Swift 3</strong> 迁移到 <strong>Swift 4</strong>.</p>
-<h2 id="Swift-指引"><a href="#Swift-指引" class="headerlink" title="Swift 指引"></a>Swift 指引</h2><p>通常, 在屏幕上打印 “Hello World!” 作为接触一门新语言的开端. <strong>Swift</strong> 只要一行代码就可以完成:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">"Hello World!"</span>)</span><br></pre></td></tr></table></figure>
-<p>###to be continue…</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/18/About-Swift/" data-id="cjk7tune30000418z07udf6xk" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-Git-Log" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/11/Git-Log/" class="article-date">
-  <time datetime="2018-04-11T08:06:18.474Z" itemprop="datePublished">2018-04-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/11/Git-Log/">GitLog 分享</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>标准: 每次commit只做一件事!!!</p>
-<blockquote>
-<p>Type: 📝<br>Info: 更新文档</p>
-</blockquote>
-<ul>
-<li>🎨:Improving structure / format of the code</li>
-<li>⚡️:Improving performance</li>
-<li>🔥:Removing code or files</li>
-<li>🐛:Fixing a bug</li>
-<li>🚑:Critical hotfix</li>
-<li>✨:Introducing new features</li>
-<li>📝:Writing docs</li>
-<li>🚀:Deploying stuff</li>
-<li>💄:Updating the UI and style files</li>
-<li>🎉:Initial commit</li>
-<li>✅:Adding tests</li>
-<li>🔒:Fixing security issues</li>
-<li>🔖:Releasing / Version tags</li>
-<li>♻️:Refactoring code</li>
-<li>🌐:Internationalization and localization</li>
-<li>💩:Writing bad code that needs to be improved</li>
-<li>⏪:Reverting changes</li>
-<li>🔀:Merging branches</li>
-<li>📦:Updating compiled files or packages</li>
-<li>🚚:Moving or renaming files</li>
-<li>📄:Adding or updating license</li>
-<li>🍱:Adding or updating assets</li>
-<li>♿️:Improving accessibility</li>
-<li>🏗:Making architectural changes</li>
-<li>🔊:Adding logs</li>
-<li>🔇:Removing logs</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/11/Git-Log/" data-id="cjk7tunek0001418znsqf1n1p" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-写在前面的话" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/04/10/写在前面的话/" class="article-date">
-  <time datetime="2018-04-10T01:09:54.208Z" itemprop="datePublished">2018-04-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/10/写在前面的话/">写在前面的话</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>最近有时间提升自己, 便开了这个博客.</p>
-<p>因为别人也能看到, 当做对自己的鞭策吧, 保证质量和更新.</p>
-<p>也给自己列一份计划:</p>
-<ul>
-<li>恶补计算机知识</li>
-<li>翻译 iOS/Android 开发文档</li>
-<li>分享开发 Tips</li>
-</ul>
-<p>希望自己能坚持下去!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/写在前面的话/" data-id="cjk7tunen0003418znr1gvm5f" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
