@@ -62,6 +62,46 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-UIViewAnimationOptions" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/07/31/UIViewAnimationOptions/" class="article-date">
+  <time datetime="2018-07-31T07:16:12.597Z" itemprop="datePublished">2018-07-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/31/UIViewAnimationOptions/">UIViewAnimationOptions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">UIViewAnimationOptionLayoutSubviews            //提交动画的时候布局子控件，表示子控件将和父控件一同动画。</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionAllowUserInteraction      //动画时允许用户交流，比如触摸</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionBeginFromCurrentState     //从当前状态开始动画</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionRepeat                    //动画无限重复</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionAutoreverse               //执行动画回路,前提是设置动画无限重复</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionOverrideInheritedDuration //忽略外层动画嵌套的执行时间</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionOverrideInheritedCurve    //忽略外层动画嵌套的时间变化曲线</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionAllowAnimatedContent      //通过改变属性和重绘实现动画效果，如果key没有提交动画将使用快照</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionShowHideTransitionViews   //用显隐的方式替代添加移除图层的动画效果</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionOverrideInheritedOptions  //忽略嵌套继承的选项</span><br></pre></td></tr></table></figure>
+<p>###时间函数曲线相关</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">UIViewAnimationOptionCurveEaseInOut            //时间曲线函数，缓入缓出，中间快</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionCurveEaseIn               //时间曲线函数，由慢到特别快（缓入快出）</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionCurveEaseOut              //时间曲线函数，由快到慢(快入缓出)</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionCurveLinear               //时间曲线函数，匀速</span><br></pre></td></tr></table></figure>
+<p>###转场动画相关</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">UIViewAnimationOptionTransitionNone            //无转场动画</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionFlipFromLeft    //转场从左翻转</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionFlipFromRight   //转场从右翻转</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionCurlUp          //上卷转场</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionCurlDown        //下卷转场</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionCrossDissolve   //转场交叉消失</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionFlipFromTop     //转场从上翻转</span><br><span class="line"></span><br><span class="line">UIViewAnimationOptionTransitionFlipFromBottom  //转场从下翻转</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/07/31/UIViewAnimationOptions/" data-id="cjk9djdco0003y98zlm3lbhfm" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Runtime-in-Swift" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/07/30/Runtime-in-Swift/" class="article-date">
@@ -105,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/07/30/Runtime-in-Swift/" data-id="cjk7tunel0002418z3i6ypn7q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/07/30/Runtime-in-Swift/" data-id="cjk9djdcn0002y98zqyzbam3v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -168,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/18/About-Swift/" data-id="cjk7tune30000418z07udf6xk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/18/About-Swift/" data-id="cjk9djdce0000y98zhpgwz6gy" class="article-share-link">Share</a>
       
       
     </footer>
@@ -236,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/11/Git-Log/" data-id="cjk7tunek0001418znsqf1n1p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/11/Git-Log/" data-id="cjk9djdck0001y98zrb1n0y1z" class="article-share-link">Share</a>
       
       
     </footer>
@@ -281,7 +321,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/04/10/写在前面的话/" data-id="cjk7tunen0003418znr1gvm5f" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/04/10/写在前面的话/" data-id="cjk9djdcq0004y98z1llj6p68" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,6 +360,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/07/31/UIViewAnimationOptions/">UIViewAnimationOptions</a>
+          </li>
         
           <li>
             <a href="/2018/07/30/Runtime-in-Swift/">Runtime in Swift</a>
