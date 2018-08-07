@@ -55,14 +55,14 @@ propertyA
 
 ```
 let `class` = SwiftRuntimeClass()
-        guard let methodList = class_copyMethodList(object_getClass(`class`), &count) else {
-            print("methodList is nil")
-            return
-        }
-        for i in 0..<numericCast(count) {
-            let method = method_getName(methodList[i])
-            print(String(NSStringFromSelector(method)) ?? "no method")
-        }
+guard let methodList = class_copyMethodList(object_getClass(`class`), &count) else {
+	print("methodList is nil")
+	return
+}
+for i in 0..<numericCast(count) {
+let method = method_getName(methodList[i])
+	print(String(NSStringFromSelector(method)) ?? "no method")
+}
 ```
 
 2.交换函数
