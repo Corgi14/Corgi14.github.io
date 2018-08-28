@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title> | Corgi's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Corgi's Blog</h1><a id="logo" href="/.">Corgi's Blog</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> home</i></a><a href="/archives/"><i class="fa fa-archive"> archive</i></a><a href="/about/"><i class="fa fa-user"> about</i></a><a href="/atom.xml"><i class="fa fa-rss"> rss</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"></h1><div class="post-meta">Aug 28, 2018</div><div class="post-content"><h1 id="Vapor"><a href="#Vapor" class="headerlink" title="Vapor"></a>Vapor</h1><p>Vapor 是可以运行在 macOS 和 Ubuntu 上的 Swift Web 框架, Vapor 3 需要 Swift 4.1 支持, 本文选择 macOS 作为开发平台, 并默认你已经安装好了最新的 Xcode, </p>
+<h2 id="Vapor-入门"><a href="#Vapor-入门" class="headerlink" title="Vapor 入门"></a>Vapor 入门</h2><ul>
+<li>安装 Vapor</li>
+</ul>
+<blockquote>
+<p>Vapor 通过 Homebrew 安装, 如果没有安装 Homebrew, 请前往 <a href="https://brew.sh/" target="_blank" rel="noopener">https://brew.sh/</a>, 跟随指引安装. </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install vapor/tap/vapor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>通过模板创建项目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vapor new HelloVapor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vapor build</span><br></pre></td></tr></table></figure>
+<ul>
+<li>运行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vapor run</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>终端输出: Server starting on <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a>, 则表示成功运行</p>
+<p>停止运行按 ctrl + c</p>
+</blockquote>
+<ul>
+<li>在浏览器访问: <code>http://localhost:8080/hello</code>, 网页显示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello, world!</span><br></pre></td></tr></table></figure>
+<ul>
+<li>生成 Xcode 项目</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vapor xcode -y</span><br></pre></td></tr></table></figure>
+<ul>
+<li>自定义路由</li>
+</ul>
+<p>打开 <code>Sources/App/routes.swift</code></p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public func routes(_ router: Router) throws &#123; </span><br><span class="line">    //响应 GET 请求, 路径是 http://localhost:8080/hello/test, 闭包回调 req, 返回值是 String.</span><br><span class="line">    router.get(&quot;hello&quot;, &quot;test&quot;) &#123; req -&gt; String in</span><br><span class="line">        return &quot;Router test&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    //响应 GET 请求, 路径是 http://localhost:8080/hello/[用户输入String], 闭包回调 req, 通过 req 获取用户输入的字符串, 并返回.</span><br><span class="line">    router.get(&quot;hello&quot;, String.parameter) &#123; req -&gt; String in</span><br><span class="line">        let name = try req.parameters.next(String.self)</span><br><span class="line">        return &quot;Hello! \(name)&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    // 响应 POST 请求, 路径是http://localhost:8080/info, Content type 是 InfoData, 返回 InfoResponse. </span><br><span class="line">    router.post(InfoData.self, at: &quot;info&quot;) &#123; (req, data) -&gt; InfoResponse in</span><br><span class="line">        return InfoResponse(request: data)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct InfoData: Content &#123;</span><br><span class="line">    let name: String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">struct InfoResponse: Content &#123;</span><br><span class="line">    let request: InfoData</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行, 通过浏览器访问: <code>http://localhost:8080/hello/test</code>, 网页显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Router test</span><br></pre></td></tr></table></figure>
+<p>通过浏览器访问: <code>http://localhost:8080/hello/Corgi</code>, 网页显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello! Corgi</span><br></pre></td></tr></table></figure>
+<p>配置 Rested: </p>
+<p>路径: <code>http://localhost:8080/info</code></p>
+<p>请求类型: POST</p>
+<p>请求体: {“name”: “Corgi”}</p>
+<p>响应体: {“request”: {“name”: “Corgi”}} </p>
+<ul>
+<li>问题处理<ul>
+<li>重新生成项目 <code>vapor xcode -y</code></li>
+<li>更新依赖 <code>vapor update</code></li>
+<li>清理项目重新编译 <code>rm -rf .build</code></li>
+<li>Vapor 版本不一致</li>
+</ul>
+</li>
+</ul>
+</div><div class="tags"></div><div class="post-nav"><a class="next" href="/2018/08/27/UITableViewCell-动画/"></a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> categories</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/Vapor/">Vapor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/27/UITableViewCell-动画/">UITableViewCell-动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/14/Replugin采坑-2018-08-14更新/">Replugin采坑(2018-08-14更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Android-Permission/">Android Permission(runtime)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/Tips/">Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/UIViewAnimationOptions/">UIViewAnimationOptions</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Runtime-in-Swift/">Runtime in Swift</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/18/About-Swift/">Welcome to Swift</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/11/Git-Log/">GitLog 分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/10/写在前面的话/">写在前面的话</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Corgi's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
