@@ -1,5 +1,13 @@
 <!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title> | Corgi's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Corgi's Blog</h1><a id="logo" href="/.">Corgi's Blog</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> home</i></a><a href="/archives/"><i class="fa fa-archive"> archive</i></a><a href="/about/"><i class="fa fa-user"> about</i></a><a href="/atom.xml"><i class="fa fa-rss"> rss</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"></h1><div class="post-meta">Aug 28, 2018</div><div class="post-content"><h1 id="Vapor"><a href="#Vapor" class="headerlink" title="Vapor"></a>Vapor</h1><p>Vapor 是可以运行在 macOS 和 Ubuntu 上的 Swift Web 框架, Vapor 3 需要 Swift 4.1 支持, 本文选择 macOS 作为开发平台, 并默认你已经安装好了最新的 Xcode, </p>
-<h2 id="Vapor-入门"><a href="#Vapor-入门" class="headerlink" title="Vapor 入门"></a>Vapor 入门</h2><h3 id="安装-Vapor"><a href="#安装-Vapor" class="headerlink" title="安装 Vapor"></a>安装 Vapor</h3><blockquote>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<li><p><a href="#Hello Vapor"><strong>Vapor 入门</strong></a></p>
+</li>
+<li><p><a href="#HTTP Basics"><strong>HTTP 基础</strong></a></p>
+</li>
+<li><p><a href="#Async"><strong>异步</strong></a></p>
+</li>
+</ul>
+<h2 id="Vapor-入门"><a href="#Vapor-入门" class="headerlink" title="Vapor 入门"></a><a name="Hello Vapor"></a>Vapor 入门</h2><h3 id="安装-Vapor"><a href="#安装-Vapor" class="headerlink" title="安装 Vapor"></a>安装 Vapor</h3><blockquote>
 <p>Vapor 通过 Homebrew 安装, 如果没有安装 Homebrew, 请前往 <a href="https://brew.sh/" target="_blank" rel="noopener">https://brew.sh/</a>, 跟随指引安装. </p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install vapor/tap/vapor</span><br></pre></td></tr></table></figure>
@@ -30,7 +38,7 @@
 <li>清理项目重新编译 <code>rm -rf .build</code></li>
 <li>Vapor 版本不一致</li>
 </ul>
-<h2 id="HTTP-基础"><a href="#HTTP-基础" class="headerlink" title="HTTP 基础"></a>HTTP 基础</h2><h3 id="HTTP-request"><a href="#HTTP-request" class="headerlink" title="HTTP request"></a>HTTP request</h3><ul>
+<h2 id="HTTP-基础"><a href="#HTTP-基础" class="headerlink" title="HTTP 基础"></a><a name="HTTP Basics"></a>HTTP 基础</h2><h3 id="HTTP-request"><a href="#HTTP-request" class="headerlink" title="HTTP request"></a>HTTP request</h3><ul>
 <li>request line: HTTP method + resource requested + HTTP version (比如 GET /about.html HTTP/1.1)</li>
 <li>request header</li>
 <li>blank line</li>
@@ -42,4 +50,16 @@
 <li>空行</li>
 <li>optional response body</li>
 </ul>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a><a name="Async"></a>异步</h2><h3 id="关于异步"><a href="#关于异步" class="headerlink" title="关于异步"></a>关于异步</h3><p>为什么 <strong>异步</strong> 很重要呢, 我们用例子来说明.</p>
+<p>想象一下, 在只有单线程的条件下, 有这样一个需求场景:</p>
+<ul>
+<li>一个关于股票报价的请求, 它会指向另外一个服务器 API;</li>
+<li>一个关于 CSS 的请求, 它可以立即响应;</li>
+<li>一个关于用户配置文件的请求, 需要查询数据库之后响应;</li>
+<li>一个关于静态 HTML 的请求, 他可以立即响应.</li>
+</ul>
+<p>在同步服务器中, 服务器的线程会一直阻塞直到股票报价请求得到响应, 然后服务器处理 CSS 请求, 接下来服务器在进行查询数据库的时候再次阻塞, 直到返回用户配置文件, 只有到这时,服务器返回 HTML 给客户端.</p>
+<p>而在异步服务器中, 服务器的线程开始处理股票报价的请求, 然后把它放到一边等待处理完成. 同时处理 CSS 请求, 查询数据库和处理 HTML 请求. 当股票报价请求完成, 服务器线程将他们的结果返回给客户端.</p>
+<p>但是有人会提出服务器不是只有单线程, 虽然你是正确的, 但是服务器可调用的线程数量是有限的. 在线程之间切换是代价昂贵的, 而且确保每个数据接口是线程安全的也是耗时而且容易出现问题的. 所以, 紧靠开启线程来解决问题是低效的错误之选.</p>
+<h3 id="Future-和-promise"><a href="#Future-和-promise" class="headerlink" title="Future 和 promise"></a>Future 和 promise</h3><p><strong>to be continued</strong></p>
 </div><div class="tags"></div><div class="post-nav"><a class="next" href="/2018/08/27/UITableViewCell-动画/"></a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> categories</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> tags</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> recent</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/28/Vapor/">Vapor</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/27/UITableViewCell-动画/">UITableViewCell-动画</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/14/Replugin采坑-2018-08-14更新/">Replugin采坑(2018-08-14更新)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/Android-Permission/">Android Permission(runtime)</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/Tips/">Tips</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/UIViewAnimationOptions/">UIViewAnimationOptions</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/30/Runtime-in-Swift/">Runtime in Swift</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/18/About-Swift/">Welcome to Swift</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/11/Git-Log/">GitLog 分享</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/04/10/写在前面的话/">写在前面的话</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> blogroll</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">Corgi's Blog.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
