@@ -303,6 +303,86 @@ map(
 
 有些时候, 你需要创建自己的 Future, 如果 `if` 语句返回非 Future返回值, `else` 返回 Future 返回值, 编译器会提示需要返回同样类型. 未解决类似问题, 你需要使用 `request.future(_:)` 将非 Future 转换为 Future, 比如:
 
+```
+// 1
+func createTrackingSession(for request: Request)
+  -> Future<TrackingSession> {
+  return request.makeNewSession()
+}
 
+// 2
+func getTrackingSession(for request: Request)
+  -> Future<TrackingSession> {
+  // 3
+  let session: TrackingSession? =
+    TrackingSession(id: request.getKey())
+  // 4
+  guard let createdSession = session else {
+    return createTrackingSession(for: request)
+  }
+  // 5
+return request.future(createdSession)
+}
+```
+
+代码分析:
+
+1. 定义了一个通过 request 创建 `TrackingSession` 的方法, 返回值是 `Future<TrackingSession>`
+2. 定义了一个通过 request 获取 tracking session 的方法.
+3. 尝试通过 request 的 key 创建 tracking session, 如果创建失败结果为 nil.
+4. 使用 `guard let` 确认创建成功, 或者创建一个新的对象.
+5. 通过 `request.future(_:)` 创建 `Future<TrackingSession>`, 与 request 在同一 Worker 执行, 并返回 Future.
+
+因为 `createTrackingSession(for:)` 方法返回值是 `Future<TrackingSession>`, 所以需要使用 `request.future(_:)` 通过编译.
+
+#### 错误处理
+
+Vapor 在框架中大量的使用了 Swift 的错误处理, 很多方法通过 `throw` 允许你自己按等级处理错误. 你可以在你的路由闭包内部或者利用中间件来捕获更高级的错误, 或者两者都有.
+
+但是在异步环境中对错误进行处理是有一点不同的, 因为你不知道承诺什么时候会执行, 所以不能使用 `do/catch`. Vapor 提供了一些方法来应对这些情况. Vapor 有它自己的 `do/catch` 回调协同 Future 工作.
+
+```
+let futureResult = user.save()
+futureResult.do { user in
+  print("User was saved")
+}.catch { error in
+  print("There was an error saving the user: \(error)")
+}
+```
+
+如果 `save()` 成功, `do` 闭包被执行, 并将 Future 解包作为参数; 如果 Future 失败, `.catch`闭包被执行, 传递 Error.
+
+在 Vapor 中, 当你持有了 request, 就必须返回结果, 哪怕是一个 Future. 使用上面的 `do/catch` 不会防止错误发生, 但是可以让你知道错误是什么. 如果 `save()` 执行失败它不会停止, 在大多数场景下, 你会想要更正这个错误.
+
+Vapor 提供 `catchMap(_:)` 和 `catchFlatMap(_:)` 处理这种类型的失败, 你可以持有错误然后处理或者将它抛出:
+
+```
+// 1
+return user.save(on: req).catchMap { error -> User in
+  // 2
+  print("Error saving the user: \(error)")
+  // 3
+  return User(name: "Default User")
+}
+```
+
+代码分析:
+
+1. 尝试保存 user, 提供了 `catchMap(_:)` 来持有可能出现的错误, 闭包将错误作为参数, 而且必须返回 User 类型.
+2. 打印错误日志.
+3. 创建默认 User 并返回.
+
+当闭包返回 Future 类型的时候, Vapor 也提供相似的 `catchFlatMap(_:)` 方法.
+
+```
+return user.save().catchFlatMap { error -> Future<User> in
+  print("Error saving the user: \(error)")
+  return User(name: "Default User").save()
+}
+```
+
+因为 `save()` 返回 Future 类型, 所以需要使用 `catchFlatMap(_:)` 代替.
+
+catchMap 和 catchFlatMap
 
 **to be continued**
